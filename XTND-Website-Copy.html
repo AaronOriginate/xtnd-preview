@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XTND Website Copy Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; color: #1a1a2e; background: #f8f9fa; line-height: 1.7; font-size: 15px; }
+    .doc { max-width: 860px; margin: 0 auto; padding: 40px 24px 80px; }
+
+    /* Cover */
+    .cover { background: #001E6C; color: #fff; padding: 80px 48px; border-radius: 16px; margin-bottom: 48px; text-align: center; }
+    .cover h1 { font-size: 36px; font-weight: 600; margin-bottom: 8px; }
+    .cover .subtitle { font-size: 18px; opacity: 0.8; margin-bottom: 32px; }
+    .cover .meta { display: flex; justify-content: center; gap: 32px; font-size: 13px; opacity: 0.6; }
+    .cover .dots { display: flex; justify-content: center; gap: 8px; margin-bottom: 24px; }
+    .cover .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .cover .dot--red { background: #EF2B2D; }
+    .cover .dot--blue { background: #1E90FF; }
+    .cover .dot--purple { background: #8B5CF6; }
+
+    /* TOC */
+    .toc { background: #fff; border-radius: 12px; padding: 32px; margin-bottom: 48px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    .toc h2 { font-size: 18px; margin-bottom: 16px; color: #001E6C; }
+    .toc ol { padding-left: 20px; }
+    .toc li { margin-bottom: 8px; }
+    .toc a { color: #EF2B2D; text-decoration: none; font-weight: 500; }
+    .toc a:hover { text-decoration: underline; }
+
+    /* Page sections */
+    .page { background: #fff; border-radius: 12px; padding: 40px; margin-bottom: 32px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    .page-header { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; padding-bottom: 16px; border-bottom: 2px solid #EF2B2D; }
+    .page-number { background: #EF2B2D; color: #fff; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px; flex-shrink: 0; }
+    .page-title { font-size: 22px; font-weight: 600; color: #001E6C; }
+    .page-url { font-size: 12px; color: #999; margin-top: 2px; }
+
+    /* Section blocks */
+    .section { margin-bottom: 28px; }
+    .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #EF2B2D; margin-bottom: 8px; }
+    .section h3 { font-size: 16px; font-weight: 600; color: #001E6C; margin-bottom: 4px; }
+    .section p, .section li { color: #444; margin-bottom: 8px; }
+    .section ul { padding-left: 20px; }
+    .section ul li { margin-bottom: 4px; }
+    .section blockquote { border-left: 3px solid #EF2B2D; padding-left: 16px; color: #555; font-style: italic; margin: 12px 0; }
+
+    /* Eyebrow / heading combos */
+    .eyebrow { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #8B5CF6; margin-bottom: 4px; }
+    .heading { font-size: 20px; font-weight: 600; color: #001E6C; margin-bottom: 12px; }
+
+    /* Cards / items */
+    .card-block { background: #f8f9fa; border-radius: 8px; padding: 20px; margin-bottom: 12px; border-left: 3px solid #1E90FF; }
+    .card-block h4 { font-size: 15px; font-weight: 600; color: #001E6C; margin-bottom: 4px; }
+    .card-block p { margin-bottom: 0; font-size: 14px; color: #555; }
+
+    .event-block { background: #f8f9fa; border-radius: 8px; padding: 16px 20px; margin-bottom: 8px; border-left: 3px solid #EF2B2D; display: flex; gap: 16px; align-items: baseline; }
+    .event-block .date { font-weight: 600; color: #EF2B2D; white-space: nowrap; min-width: 70px; font-size: 13px; }
+    .event-block .details h4 { font-size: 14px; font-weight: 600; color: #001E6C; margin-bottom: 2px; }
+    .event-block .details p { font-size: 13px; color: #555; margin-bottom: 0; }
+
+    .team-block { background: #f8f9fa; border-radius: 8px; padding: 20px; margin-bottom: 12px; border-left: 3px solid #8B5CF6; }
+    .team-block h4 { font-size: 15px; font-weight: 600; color: #001E6C; margin-bottom: 2px; }
+    .team-block .role { font-size: 12px; color: #8B5CF6; font-weight: 500; margin-bottom: 8px; }
+    .team-block p { font-size: 14px; color: #555; margin-bottom: 6px; }
+
+    .stat-block { display: inline-block; background: #001E6C; color: #fff; border-radius: 8px; padding: 16px 24px; margin: 0 8px 8px 0; text-align: center; }
+    .stat-block .num { font-size: 22px; font-weight: 600; }
+    .stat-block .label { font-size: 11px; opacity: 0.8; }
+
+    .donation-block { display: flex; align-items: baseline; gap: 16px; background: #f8f9fa; border-radius: 8px; padding: 16px 20px; margin-bottom: 8px; }
+    .donation-block .amount { font-size: 20px; font-weight: 600; color: #EF2B2D; min-width: 60px; }
+    .donation-block p { font-size: 14px; color: #555; margin-bottom: 0; }
+
+    .policy-block { background: #f8f9fa; border-radius: 8px; padding: 16px 20px; margin-bottom: 8px; }
+    .policy-block h4 { font-size: 14px; font-weight: 600; color: #001E6C; margin-bottom: 2px; }
+    .policy-block p { font-size: 13px; color: #555; margin-bottom: 0; }
+
+    /* Notes */
+    .note { background: #FEF3CD; border-radius: 8px; padding: 16px; margin: 16px 0; font-size: 13px; color: #856404; }
+    .note strong { color: #664d03; }
+
+    /* Divider */
+    .divider { border: none; border-top: 1px solid #e5e7eb; margin: 24px 0; }
+
+    /* Footer */
+    .doc-footer { text-align: center; padding: 32px; font-size: 12px; color: #999; }
+
+    /* Print */
+    @media print {
+      body { background: #fff; font-size: 11pt; }
+      .doc { padding: 0; }
+      .cover { page-break-after: always; }
+      .page { box-shadow: none; border: 1px solid #e5e7eb; page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="doc">
+
+    <!-- Cover -->
+    <div class="cover">
+      <div class="dots">
+        <span class="dot dot--red"></span>
+        <span class="dot dot--blue"></span>
+        <span class="dot dot--purple"></span>
+      </div>
+      <h1>XTND &mdash; Improving Futures</h1>
+      <p class="subtitle">Website Copy Document</p>
+      <div class="meta">
+        <span>8 Pages</span>
+        <span>Preview: aaronoriginate.github.io/xtnd-preview</span>
+        <span>February 2026</span>
+      </div>
+    </div>
+
+    <!-- Instructions -->
+    <div class="page" style="border-left: 4px solid #EF2B2D;">
+      <h2 style="font-size: 18px; color: #001E6C; margin-bottom: 12px;">How to Use This Document</h2>
+      <p>This document contains all the text from the XTND preview website, organised page by page. It&rsquo;s designed to be reviewed alongside the live preview at <a href="https://aaronoriginate.github.io/xtnd-preview/" style="color: #EF2B2D; font-weight: 500;">aaronoriginate.github.io/xtnd-preview</a></p>
+      <ul style="margin-top: 12px;">
+        <li><strong>Review each page&rsquo;s copy</strong> and flag anything that needs changing</li>
+        <li><strong>Edit directly</strong> &mdash; rewrite, delete, or add copy as you see fit</li>
+        <li><strong>Items marked TBC</strong> need your input (phone numbers, email addresses, event dates)</li>
+        <li><strong>Check names, roles, and facts</strong> &mdash; we&rsquo;ve used what we had, but you know your team best</li>
+      </ul>
+      <div class="note">
+        <strong>Note:</strong> This is draft copy for review. Nothing goes live until you&rsquo;re happy with it.
+      </div>
+    </div>
+
+    <!-- TOC -->
+    <div class="toc">
+      <h2>Contents</h2>
+      <ol>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#whats-on">What&rsquo;s On</a></li>
+        <li><a href="#meet-team">Meet the Team</a></li>
+        <li><a href="#funders">For Funders</a></li>
+        <li><a href="#donate">Donate</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+        <li><a href="#policies">Policies</a></li>
+      </ol>
+    </div>
+
+    <!-- ==================== PAGE 1: HOME ==================== -->
+    <div class="page" id="home">
+      <div class="page-header">
+        <div class="page-number">1</div>
+        <div>
+          <div class="page-title">Home</div>
+          <div class="page-url">index.html</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Hero</div>
+        <div class="heading">Groups, classes and support for families in Bournville</div>
+        <p>We&rsquo;ve been part of school life here since 2011. You&rsquo;ve probably seen us at the gate. Come along. Everyone&rsquo;s welcome.</p>
+        <p><em>Buttons: &ldquo;See What&rsquo;s On&rdquo; &bull; &ldquo;Get in Touch&rdquo;</em></p>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">What We Do</div>
+        <div class="eyebrow">What We Do</div>
+        <div class="heading">Here for families, right at the school gate</div>
+
+        <div class="card-block">
+          <h4>Groups and Classes</h4>
+          <p>From cooking in the kitchen to pumpkin carving and lantern parades &mdash; our sessions bring families together. Most are free. All are friendly.</p>
+        </div>
+        <div class="card-block">
+          <h4>Support When You Need It</h4>
+          <p>Life gets complicated sometimes. We&rsquo;re here to listen, help you find the right support, and point you towards organisations that can help.</p>
+        </div>
+        <div class="card-block">
+          <h4>Community Connection</h4>
+          <p>People come for the activity, but they stay for the people. Friendships form. Social networks grow. Connections last long after the course ends.</p>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">Who We Are</div>
+        <div class="eyebrow">Who We Are</div>
+        <div class="heading">Four people. Two schools. One community.</div>
+        <p>We&rsquo;re not a big organisation. We&rsquo;re four people &mdash; Tamara, Alice, Kate and Cheryl &mdash; based right here on the estate.</p>
+        <p>XTND - Improving Futures is a registered charity (no. 1141966) that does one thing well: we bring families together. We work inside both primary schools, which means we&rsquo;re already part of the local community.</p>
+        <ul>
+          <li>Based at Bournville Primary and Windwhistle Primary since 2011</li>
+          <li>Known faces at the school gate every day</li>
+          <li>Free groups, classes and support for families</li>
+        </ul>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">Gallery</div>
+        <div class="eyebrow">How it works</div>
+        <div class="heading">What goes on at XTND?</div>
+        <p><em>4 photos in coloured frames (pink, yellow, blue, red)</em></p>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">Upcoming Events</div>
+        <div class="eyebrow">Upcoming Events</div>
+        <div class="heading">There&rsquo;s always something on</div>
+        <p>Here&rsquo;s what&rsquo;s coming up. Most sessions are free, and you don&rsquo;t need to book. From cooking classes to nature walks, lantern parades to book swaps.</p>
+        <ul>
+          <li>Book Swap &mdash; 6th March at Windwhistle</li>
+          <li>Easter Event &mdash; April half term</li>
+          <li>EYFS Community Garden &mdash; 28th April</li>
+          <li>Nature Walk &mdash; 28th April</li>
+        </ul>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">CTA</div>
+        <div class="heading">We&rsquo;re at the school gate most days.</div>
+        <p>Pop over for a chat. Turn up to a session. Or just say hello &mdash; that&rsquo;s how most people start.</p>
+        <p>No booking needed for most groups. No forms. No fuss.</p>
+      </div>
+    </div>
+
+    <!-- ==================== PAGE 2: ABOUT ==================== -->
+    <div class="page" id="about">
+      <div class="page-header">
+        <div class="page-number">2</div>
+        <div>
+          <div class="page-title">About Us</div>
+          <div class="page-url">about.html</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Hero</div>
+        <div class="eyebrow">About XTND</div>
+        <div class="heading">We&rsquo;ve been at the school gate since 2011.</div>
+        <p>XTND &ndash; Improving Futures started with a simple idea: be where families are. Twelve years on, we&rsquo;re still here. Still at the gate. Still part of the routine.</p>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">Stats Row</div>
+        <div class="stat-block"><div class="num">100+</div><div class="label">Families connected through our programmes</div></div>
+        <div class="stat-block"><div class="num">Since 2011</div><div class="label">Part of school life on the estate</div></div>
+        <div class="stat-block"><div class="num">2 Schools</div><div class="label">Bournville Primary &amp; Windwhistle Primary</div></div>
+        <div class="stat-block"><div class="num">4 Staff</div><div class="label">Tamara, Alice, Kate &amp; Cheryl</div></div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">Our Story</div>
+        <div class="eyebrow">Our Story</div>
+        <div class="heading">It started in 2011</div>
+        <p>It started at two primary schools on the Bournville estate in Weston-super-Mare. The idea wasn&rsquo;t complicated. Families on the estate needed connection, not another service with forms and waiting lists.</p>
+        <p>So XTND set up inside the schools. Literally inside them. We got a base at Bournville Primary School (the XTND Hut, as everyone calls it) and started running groups at Windwhistle Primary School too.</p>
+        <p>We&rsquo;re a registered charity (no. 1141966) but that&rsquo;s not how most people know us. They know Tamara at the school gate. They know the Tuesday group. They know the Hut.</p>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">Quote Callout</div>
+        <blockquote>Parents chatting at drop-off started coming to a cooking class. Then a craft session. Then they&rsquo;d bring a friend. Before long, friendships formed that had nothing to do with us. That&rsquo;s the bit we&rsquo;re proudest of, honestly.</blockquote>
+        <p><em>&mdash; The connections that carry on without any help from XTND at all.</em></p>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">Our Approach</div>
+        <div class="eyebrow">Our Approach</div>
+        <div class="heading">We don&rsquo;t wait for families to come to us.</div>
+        <p>Here&rsquo;s what makes XTND different from most organisations working in the local community. We&rsquo;re already there.</p>
+
+        <div class="card-block">
+          <h4>Already There</h4>
+          <p>Our staff are part of school life at Bournville Primary and Windwhistle Primary. They&rsquo;re at drop-off. They&rsquo;re at pick-up. They know the children&rsquo;s names.</p>
+        </div>
+        <div class="card-block">
+          <h4>Natural Support</h4>
+          <p>Families who&rsquo;d never walk through the door of a formal service will happily come to a cooking class run by someone they already know. The support happens naturally. That&rsquo;s by design.</p>
+        </div>
+        <div class="card-block">
+          <h4>Connected Network</h4>
+          <p>We run groups. We run classes. We connect people. And when someone needs more than we can offer, we know exactly who to call.</p>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">The Bournville Estate</div>
+        <div class="eyebrow">The Bournville Estate</div>
+        <div class="heading">This is home.</div>
+        <p>Bournville is a small estate on the edge of Weston-super-Mare in North Somerset. It&rsquo;s tight-knit. People look out for each other.</p>
+        <p>It&rsquo;s the kind of place where people know their neighbours. The mum who organised a street party last summer. The dad who volunteers at the breakfast club every morning. That community spirit is what XTND was built around.</p>
+        <p>XTND exists because this community is worth investing in. Not from the outside, parachuting in with programmes and then leaving. From the inside, as part of everyday school life, for as long as we&rsquo;re needed.</p>
+        <ul>
+          <li>Part of the Pride in Place regeneration programme (2025&ndash;2035)</li>
+          <li>XTND has been here since before that programme existed</li>
+          <li>We&rsquo;ll be here long after</li>
+        </ul>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">Our Partners</div>
+        <div class="eyebrow">Our Partners</div>
+        <div class="heading">We don&rsquo;t do this alone.</div>
+        <p>Good things happen when organisations work together properly. Not just logos on a report &mdash; actual collaboration, actual relationships.</p>
+
+        <h3 style="margin: 16px 0 8px; font-size: 15px;">Schools</h3>
+        <div class="card-block">
+          <h4>Bournville Primary School</h4>
+          <p>Home of the XTND Hut. Our main base since 2011.</p>
+        </div>
+        <div class="card-block">
+          <h4>Windwhistle Primary School</h4>
+          <p>Our second school, where we run regular groups and events.</p>
+        </div>
+
+        <h3 style="margin: 16px 0 8px; font-size: 15px;">Community Partners</h3>
+        <div class="card-block"><h4>SWAN Network</h4><p>A community network serving the local area, backed by National Lottery funding.</p></div>
+        <div class="card-block"><h4>Home-Start North Somerset</h4><p>Home visiting support for families. We signpost families to them regularly.</p></div>
+        <div class="card-block"><h4>ELAN Trust</h4><p>The multi-academy trust that runs both schools. Trustees cross over between ELAN and XTND.</p></div>
+        <div class="card-block"><h4>Magic Breakfast</h4><p>Providing school breakfasts so no child starts the day hungry.</p></div>
+        <div class="card-block"><h4>Public Health</h4><p>Working with us on health and wellbeing in the local community.</p></div>
+        <div class="card-block"><h4>Horizon Health Centre</h4><p>Local healthcare, local relationships.</p></div>
+        <div class="card-block"><h4>Alliance Homes</h4><p>Housing provider for many families on the estate.</p></div>
+        <div class="card-block"><h4>Children&rsquo;s Centres</h4><p>Family support services in North Somerset.</p></div>
+
+        <h3 style="margin: 16px 0 8px; font-size: 15px;">Our Funders</h3>
+        <p>National Lottery Community Fund &bull; Trusthouse &bull; Quartet Community Foundation &bull; Awards for All &bull; Postcode Lottery &bull; North Somerset Community Partners</p>
+      </div>
+    </div>
+
+    <!-- ==================== PAGE 3: WHAT'S ON ==================== -->
+    <div class="page" id="whats-on">
+      <div class="page-header">
+        <div class="page-number">3</div>
+        <div>
+          <div class="page-title">What&rsquo;s On</div>
+          <div class="page-url">whats-on.html</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Hero</div>
+        <div class="eyebrow">What&rsquo;s On</div>
+        <div class="heading">What&rsquo;s On</div>
+        <p>There&rsquo;s always something happening at the schools. Have a look below and come along &mdash; most sessions are free, and you don&rsquo;t need to book.</p>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">Regular Sessions</div>
+        <div class="eyebrow">Regular Sessions</div>
+        <div class="heading">Same time, same place, familiar faces</div>
+        <p>These run throughout the term. Same time, same place. Familiar faces.</p>
+
+        <div class="card-block">
+          <h4>Cooking Classes</h4>
+          <p>Learn to cook simple, affordable meals with the family. Great fun and you get to eat what you make.</p>
+        </div>
+        <div class="card-block">
+          <h4>Parent Groups</h4>
+          <p>A chance to meet other parents, have a cuppa, and chat about whatever&rsquo;s on your mind. No agenda. Just company.</p>
+        </div>
+        <div class="card-block">
+          <h4>Craft Sessions</h4>
+          <p>Get creative with seasonal crafts and family projects. Everything&rsquo;s provided &mdash; just bring yourself.</p>
+        </div>
+
+        <div class="note">
+          <strong>Full schedule coming soon.</strong> We&rsquo;re confirming term dates and times. Check back here or follow us on Facebook for updates.
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">Windwhistle Primary School &mdash; 2026 Events</div>
+        <div class="eyebrow">Windwhistle Primary School</div>
+        <div class="heading">2026 Events at Windwhistle</div>
+        <p>Our 2026 events at Windwhistle Primary School. Mark your calendars.</p>
+
+        <div class="event-block"><div class="date">5 Feb</div><div class="details"><h4>Lantern Parade</h4><p>Come and join the parade. A brilliant evening for the whole family.</p></div></div>
+        <div class="event-block"><div class="date">24 Feb</div><div class="details"><h4>Film Night</h4><p>Popcorn, blankets, and a big screen. What&rsquo;s not to love?</p></div></div>
+        <div class="event-block"><div class="date">6 Mar</div><div class="details"><h4>Book Swap</h4><p>Bring a book, take a book. Simple as that. Celebrating World Book Day.</p></div></div>
+        <div class="event-block"><div class="date">Apr</div><div class="details"><h4>Easter Event</h4><p>Family activities to kick off the holidays. Everyone welcome.</p></div></div>
+        <div class="event-block"><div class="date">28 Apr</div><div class="details"><h4>EYFS Community Garden</h4><p>Digging, planting, getting mucky. Perfect for the little ones (and the big ones too).</p></div></div>
+        <div class="event-block"><div class="date">28 Apr</div><div class="details"><h4>Nature Walk</h4><p>Get outdoors with the family. Fresh air, good company.</p></div></div>
+        <div class="event-block"><div class="date">6 Jul</div><div class="details"><h4>Nursery Events</h4><p>Bluey and Paw Patrol themed fun for nursery children. They&rsquo;ll love it.</p></div></div>
+        <div class="event-block"><div class="date">6 Jul</div><div class="details"><h4>Year 2 and 3 Outdoor Event</h4><p>An outdoor afternoon for Years 2 and 3 to end the year.</p></div></div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">Bournville Primary School</div>
+        <div class="eyebrow">Bournville Primary School</div>
+        <div class="heading">Events at Bournville</div>
+        <p>Events at Bournville Primary School and the XTND Hut.</p>
+        <div class="note"><strong>Coming Soon.</strong> We&rsquo;re confirming the Bournville Primary events schedule for 2026. Check back here or follow us on Facebook for updates.</div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">Seasonal Events</div>
+        <div class="eyebrow">Throughout the Year</div>
+        <div class="heading">Seasonal Events</div>
+        <p>We run special events throughout the year. Keep an eye on this page and our Facebook for dates.</p>
+
+        <div class="card-block"><h4>Pumpkin Carving</h4><p>Last week of autumn term. Messy, fun, and everyone gets to take one home.</p></div>
+        <div class="card-block"><h4>Christmas Crafts</h4><p>Make something festive with the family. A lovely way to get into the spirit.</p></div>
+        <div class="card-block"><h4>Christmas in the Kitchen</h4><p>Four weekly cooking sessions in the run-up to Christmas. Learn to make meals that won&rsquo;t break the bank.</p></div>
+        <div class="card-block"><h4>Parents Evening Support</h4><p>We&rsquo;re around during parents evenings. Pop by for a chat while you wait.</p></div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">CTA</div>
+        <div class="heading">Just turn up.</div>
+        <p>Most of our sessions don&rsquo;t need booking. Turn up on the day, and we&rsquo;ll sort the rest. If a session does need booking, we&rsquo;ll say so on the listing.</p>
+        <p>Not sure which group is right for you? Ask us. We&rsquo;re at the school gate most days, or you can get in touch below.</p>
+      </div>
+    </div>
+
+    <!-- ==================== PAGE 4: MEET THE TEAM ==================== -->
+    <div class="page" id="meet-team">
+      <div class="page-header">
+        <div class="page-number">4</div>
+        <div>
+          <div class="page-title">Meet the Team</div>
+          <div class="page-url">meet-the-team.html</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Hero</div>
+        <div class="eyebrow">Meet the Team</div>
+        <div class="heading">You&rsquo;ve probably seen us at the school gate.</div>
+        <p>We&rsquo;re a small team. Four people who know the schools, know the estate, and probably already know your children&rsquo;s names.</p>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">Introduction</div>
+        <div class="eyebrow">The Team</div>
+        <div class="heading">Here&rsquo;s who we are</div>
+        <p>XTND isn&rsquo;t a big organisation. There&rsquo;s no head office, no switchboard, no receptionist.</p>
+        <p>There&rsquo;s us. Four people who turn up every day because we care about families in the local community. We&rsquo;re based at Bournville Primary School and Windwhistle Primary School, so you&rsquo;ll find us where you&rsquo;d expect &mdash; at the gate, in the Hut, setting up for the next group.</p>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">Team Bios</div>
+
+        <div class="team-block">
+          <h4>Tamara Moody</h4>
+          <div class="role">Operations Lead</div>
+          <p>Tamara keeps everything running. The groups, the schedules, the partnerships, the funding applications (all of it). She&rsquo;s the person you&rsquo;re most likely to bump into at Bournville Primary&rsquo;s school gate.</p>
+          <p>If you&rsquo;ve ever been to a cooking class or a craft session at the Hut, Tamara probably set it up. Ask her about XTND and she&rsquo;ll tell you about the mum who came to one session and ended up making three friends she still sees every week.</p>
+          <p>That&rsquo;s what gets her out of bed in the morning.</p>
+        </div>
+
+        <div class="team-block">
+          <h4>Alice</h4>
+          <div class="role">Trustee &amp; Leadership</div>
+          <p>Alice is the driving force behind XTND&rsquo;s direction. As a trustee with links to ELAN Trust (the multi-academy trust running both schools), she bridges the gap between the charity and the school community.</p>
+          <p>She believes families should know who they&rsquo;re dealing with. Not a logo. Not a charity number. Real people.</p>
+          <p>Alice cares about the details. Whether the website feels like XTND actually feels when you walk through the door. If it doesn&rsquo;t feel right, she&rsquo;ll say so.</p>
+        </div>
+
+        <div class="team-block">
+          <h4>Kate</h4>
+          <div class="role">Team Member</div>
+          <p>Kate is part of the team that makes XTND&rsquo;s groups and sessions happen on the ground. She&rsquo;s one of the faces families see regularly at the schools, and that consistency matters.</p>
+          <p>When children see the same people week after week, trust builds. Not through grand gestures. Through showing up. Kate shows up.</p>
+        </div>
+
+        <div class="team-block">
+          <h4>Cheryl</h4>
+          <div class="role">Team Member</div>
+          <p>Cheryl brings warmth and reliability to everything she does with XTND. She&rsquo;s part of the reason families come back, session after session.</p>
+          <p>People don&rsquo;t come to our groups because of a leaflet. They come because someone like Cheryl made them feel welcome the first time.</p>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">CTA</div>
+        <div class="heading">Want to get involved?</div>
+        <p>We&rsquo;re always glad to hear from people who want to help out in the local community. Whether that&rsquo;s volunteering, partnering with us, or just coming along to a group &mdash; the door&rsquo;s open.</p>
+      </div>
+    </div>
+
+    <!-- ==================== PAGE 5: FOR FUNDERS ==================== -->
+    <div class="page" id="funders">
+      <div class="page-header">
+        <div class="page-number">5</div>
+        <div>
+          <div class="page-title">For Funders</div>
+          <div class="page-url">for-funders.html</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Hero</div>
+        <div class="eyebrow">For Funders &amp; Partners</div>
+        <div class="heading">For Funders and Partners</div>
+        <p>XTND &ndash; Improving Futures has been embedded in the Bournville estate since 2011. We work inside two primary schools, building trust with families that other organisations struggle to reach.</p>
+        <p>This page sets out what we do, how we&rsquo;re funded, and why it works.</p>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">The Context</div>
+        <div class="eyebrow">The Context</div>
+        <div class="heading">Understanding Bournville</div>
+        <p>The Bournville estate in Weston-super-Mare sits within North Somerset 021C &mdash; ranked in the <strong>top 1% most deprived areas nationally</strong> (86th out of approximately 33,000 neighbourhoods in England).</p>
+        <div style="margin-top: 12px;">
+          <div class="stat-block"><div class="num">60%+</div><div class="label">Children qualify for free school meals (national avg: 26%)</div></div>
+          <div class="stat-block"><div class="num">66.7%</div><div class="label">Households in deprivation in at least one dimension</div></div>
+          <div class="stat-block"><div class="num">&pound;34,100</div><div class="label">Average household income (bottom 11% nationally)</div></div>
+          <div class="stat-block"><div class="num">19.4%</div><div class="label">Adults hold a degree (vs 33.8% across the UK)</div></div>
+        </div>
+        <p style="margin-top: 12px;">These families don&rsquo;t lack potential. They lack connection, opportunity, and trust in the services designed to help them. That&rsquo;s where XTND comes in.</p>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">Our Approach</div>
+        <div class="eyebrow">Our Approach</div>
+        <div class="heading">Inside the Schools, Not Outside Them</div>
+        <p>We don&rsquo;t operate from an office. We&rsquo;re physically inside Bournville Primary School and Windwhistle Primary School, running groups from the XTND Hut and school spaces.</p>
+        <p>Why does this matter? Because our staff &mdash; Tamara, Alice, Kate and Cheryl &mdash; are known faces at the school gate. Parents don&rsquo;t &ldquo;access a service.&rdquo; They see Tamara at drop-off, get chatting, and end up at a cooking class. The barrier to entry is close to zero.</p>
+        <p>This is intentional. Our work is often implicit. Families enjoy the group. They make friends. They build confidence. And they don&rsquo;t always see the wider impact it&rsquo;s had on their lives. But the outcomes are real.</p>
+        <blockquote>&ldquo;People create social networks from our groups, receive the support from other organisations they are signposted to, and children have a more secure childhood.&rdquo;</blockquote>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">Our Impact</div>
+        <div class="eyebrow">Our Impact</div>
+        <div class="heading">Outcomes Across Three Areas</div>
+
+        <div class="card-block"><h4>Family Connection</h4><p>We run cooking classes, parent groups, craft sessions, and family activities across both schools. Families who attend build social networks that extend well beyond our sessions. Friendships form. Isolation reduces. Parents support each other.</p></div>
+        <div class="card-block"><h4>Early Support</h4><p>Our staff have strong relationships with families and children on the estate. They&rsquo;re fully integrated in the schools, which means they&rsquo;re well placed to reach the children and families that most need it &mdash; before issues escalate. We connect families to partner organisations including Home-Start North Somerset, Public Health, and Horizon Health Centre.</p></div>
+        <div class="card-block"><h4>Community Resilience</h4><p>In 15 years of operation, XTND has become part of the fabric of the Bournville estate. We&rsquo;re not parachuted in. We live and work here. That continuity matters in an area where trust takes time to build and services come and go.</p></div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">How We&rsquo;re Funded</div>
+        <div class="eyebrow">How We&rsquo;re Funded</div>
+        <div class="heading">Small Charity, Big Impact</div>
+        <p>XTND - Improving Futures is a registered charity (no. 1141966). Our annual income for 2024/25 was <strong>&pound;61,641</strong>.</p>
+        <p>We&rsquo;re a small team. Every pound goes directly into delivering groups, sessions, and support for families on the estate. There&rsquo;s no head office, no marketing department, no layers of management. Just four staff, two schools, and a community that trusts us.</p>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">Pride in Place</div>
+        <div class="eyebrow">The Opportunity</div>
+        <div class="heading">Pride in Place</div>
+        <p>Bournville is about to change. The Pride in Place programme is bringing <strong>&pound;20 million</strong> of regeneration investment to the Bournville, Oldmixon, and Coronation estates between 2025 and 2035.</p>
+        <p>XTND is already here. We&rsquo;ve been building trust and connection on this estate for 15 years. As new investment arrives, we&rsquo;re uniquely placed to ensure it reaches the families who need it most &mdash; because we already know them.</p>
+        <p>We&rsquo;d welcome conversations with funders and partners who want to be part of what comes next.</p>
+      </div>
+    </div>
+
+    <!-- ==================== PAGE 6: DONATE ==================== -->
+    <div class="page" id="donate">
+      <div class="page-header">
+        <div class="page-number">6</div>
+        <div>
+          <div class="page-title">Donate</div>
+          <div class="page-url">donate.html</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Hero</div>
+        <div class="eyebrow">Support XTND</div>
+        <div class="heading">Help Us Keep the Doors Open</div>
+        <p>XTND &ndash; Improving Futures runs groups, classes and family support at Bournville Primary School and Windwhistle Primary School. We&rsquo;ve been here since 2011. We plan to be here for a long time yet.</p>
+        <p>But we can&rsquo;t do it without support.</p>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">Why It Matters</div>
+        <div class="eyebrow">Why It Matters</div>
+        <div class="heading">The Place Families Find Each Other</div>
+        <p>Imagine moving to a new estate and not knowing anyone. The school run is lonely. The weekends are long. You&rsquo;d love to meet other parents, but there&rsquo;s nowhere obvious to start.</p>
+        <p>That&rsquo;s what it&rsquo;s like for a lot of families in Bournville.</p>
+        <p>XTND is the place they find each other. A cooking class on a Tuesday. A craft session before Christmas. A chat with Tamara at the school gate that turns into a friendship with three other mums by half-term.</p>
+        <p>It sounds small. It isn&rsquo;t. These connections change how families experience their neighbourhood. Children feel more settled. Parents feel less alone. And the local community gets a little bit stronger every time someone new walks through the door.</p>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">What Your Donation Makes Possible</div>
+        <div class="heading">Every Penny Counts</div>
+        <p>We&rsquo;re a small charity. Our total annual income is &pound;61,641. There&rsquo;s no fat to trim &mdash; every penny goes into running sessions and supporting families. Here&rsquo;s what donations actually pay for:</p>
+
+        <div class="donation-block"><div class="amount">&pound;25</div><p>Covers materials for a cooking class &mdash; enough for 8 families to learn a new meal together.</p></div>
+        <div class="donation-block"><div class="amount">&pound;50</div><p>Pays for a craft session at the XTND Hut. Pumpkin carving, Christmas decorations, Easter activities. The stuff kids remember.</p></div>
+        <div class="donation-block"><div class="amount">&pound;100</div><p>Funds a family activity session at one of the schools. Film nights, book swaps, community garden days.</p></div>
+        <div class="donation-block"><div class="amount">&pound;250</div><p>Contributes to a full term of weekly parent group sessions &mdash; where friendships form and families find their feet.</p></div>
+        <div class="donation-block"><div class="amount">&pound;500</div><p>Helps keep our doors open for a month. Staff time, materials, heating the Hut. The basics that make everything else possible.</p></div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">Where the Money Goes</div>
+        <div class="heading">No Big Overheads. No Fancy Offices.</div>
+        <p>We&rsquo;re a registered charity (no. 1141966) and we publish our accounts every year. Our 2024/25 annual income was &pound;61,641, and it went directly into:</p>
+        <ul>
+          <li>Staff costs for Tamara, Alice, Kate and Cheryl</li>
+          <li>Materials and supplies for groups and classes</li>
+          <li>Running the XTND Hut at Bournville Primary</li>
+          <li>Family activities across both schools</li>
+          <li>Signposting and support work with partner organisations</li>
+        </ul>
+        <p>Just four people doing good work in two schools.</p>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">Other Ways to Help</div>
+        <div class="heading">Money Isn&rsquo;t the Only Way</div>
+        <div class="card-block"><h4>Spread the Word</h4><p>Tell a friend about XTND. Share our Facebook page. Mention us at the school gate. Word of mouth is how most families find us.</p></div>
+        <div class="card-block"><h4>Donate Materials</h4><p>We&rsquo;re always grateful for craft supplies, cooking ingredients, books for swaps, and activity materials. Get in touch and we&rsquo;ll let you know what we need.</p></div>
+        <div class="card-block"><h4>Volunteer</h4><p>Got time and want to help? We&rsquo;d love to hear from you. Drop us a message.</p></div>
+      </div>
+    </div>
+
+    <!-- ==================== PAGE 7: CONTACT ==================== -->
+    <div class="page" id="contact">
+      <div class="page-header">
+        <div class="page-number">7</div>
+        <div>
+          <div class="page-title">Contact Us</div>
+          <div class="page-url">contact.html</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Hero</div>
+        <div class="eyebrow">Contact Us</div>
+        <div class="heading">Pop over for a chat.</div>
+        <p>We&rsquo;re at the school gate most days. But if you can&rsquo;t catch us there, here are a few other ways to get in touch.</p>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">Get in Touch</div>
+        <div class="heading">Drop Us a Message</div>
+        <p>Fill in the form and we&rsquo;ll get back to you. No question is too small (or too big, for that matter).</p>
+
+        <h3 style="margin: 16px 0 8px; font-size: 15px;">Other Ways to Reach Us</h3>
+
+        <p><strong>Give us a ring</strong><br>Sometimes a phone call is easier. We get it.</p>
+        <div class="note"><strong>TBC:</strong> Phone number needed</div>
+
+        <p><strong>Email us</strong></p>
+        <div class="note"><strong>TBC:</strong> Email address needed</div>
+
+        <p><strong>Find us on Facebook</strong><br>We post updates, photos from sessions, and event reminders. It&rsquo;s the quickest way to see what&rsquo;s happening this week.</p>
+        <div class="note"><strong>TBC:</strong> Facebook page URL needed</div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">Find Us</div>
+        <div class="heading">Where to Find the XTND Hut</div>
+        <p>Our main base is at Bournville Primary School on the Bournville estate in Weston-super-Mare, North Somerset. That&rsquo;s where the XTND Hut is. If you&rsquo;ve dropped your children at Bournville Primary, you&rsquo;ve walked past it.</p>
+        <p>We also run groups and sessions at Windwhistle Primary School.</p>
+        <p><strong>The XTND Hut</strong><br>Bournville Primary School, Weston-super-Mare, North Somerset</p>
+        <p><strong>Getting here:</strong> The Hut is on the school grounds at Bournville Primary. Come in through the main gate and you&rsquo;ll see it. If you&rsquo;re not sure, ask at reception &mdash; or just look for Tamara.</p>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">When to Find Us</div>
+        <div class="heading">Best Times to Catch Us</div>
+        <p>We&rsquo;re around during school hours, Monday to Friday. Drop-off and pick-up times are when you&rsquo;re most likely to bump into someone from the team.</p>
+        <p>If you want to come to a specific group or session, check our What&rsquo;s On page for times and dates.</p>
+        <p>And if you just want a chat? That works too. No appointment needed.</p>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">CTA</div>
+        <div class="heading">Not Sure Where to Start?</div>
+        <p>That&rsquo;s completely fine. Most people who come to XTND started with a conversation at the school gate. Just say hello. We&rsquo;ll take it from there.</p>
+      </div>
+    </div>
+
+    <!-- ==================== PAGE 8: POLICIES ==================== -->
+    <div class="page" id="policies">
+      <div class="page-header">
+        <div class="page-number">8</div>
+        <div>
+          <div class="page-title">Policies</div>
+          <div class="page-url">policies.html</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Hero</div>
+        <div class="eyebrow">Policies</div>
+        <div class="heading">Our Policies</div>
+        <p>We take safeguarding and good practice seriously. Always have. Here you&rsquo;ll find all our policy documents available to download.</p>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">Introduction</div>
+        <p>XTND - Improving Futures is a registered charity (no. 1141966) working with families and children in Bournville, Weston-super-Mare. We work inside two primary schools every day, so getting our policies right isn&rsquo;t just paperwork. It&rsquo;s essential.</p>
+        <p>All our policies are reviewed regularly by our trustees. If you have any questions about them, please get in touch.</p>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">Policy Documents</div>
+
+        <div class="policy-block"><h4>Safeguarding Policy</h4><p>How we keep children and families safe. This is our most important document. All XTND staff are trained in safeguarding and hold current DBS checks.</p></div>
+        <div class="policy-block"><h4>Complaints Procedure</h4><p>If something isn&rsquo;t right, we want to know. This document explains how to raise a concern and what happens next.</p></div>
+        <div class="policy-block"><h4>Data Protection &amp; Privacy Policy</h4><p>How we handle personal information. We collect only what we need, store it securely, and never share it without permission.</p></div>
+        <div class="policy-block"><h4>Health &amp; Safety Policy</h4><p>Covers our activities at Bournville Primary School, Windwhistle Primary School, and the XTND Hut.</p></div>
+        <div class="policy-block"><h4>Equal Opportunities Policy</h4><p>Everyone&rsquo;s welcome at XTND. This policy sets out our commitment to treating all families fairly.</p></div>
+        <div class="policy-block"><h4>Volunteer Policy</h4><p>For anyone thinking of volunteering with us. What to expect, what we expect, and how we support you.</p></div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">CTA</div>
+        <div class="heading">Questions About Our Policies?</div>
+        <p>Drop us a message and we&rsquo;ll get back to you.</p>
+      </div>
+    </div>
+
+    <!-- ==================== GLOBAL ELEMENTS ==================== -->
+    <div class="page">
+      <div class="page-header">
+        <div class="page-number" style="background: #001E6C;">G</div>
+        <div>
+          <div class="page-title">Global Elements</div>
+          <div class="page-url">Appears on every page</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Newsletter Banner</div>
+        <div class="heading">Stay in the loop</div>
+        <p>Get updates about events, sessions and what&rsquo;s happening at XTND.</p>
+        <p><em>Email signup form with &ldquo;Submit&rdquo; button</em></p>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section">
+        <div class="section-label">Footer</div>
+        <p><strong>XTND - Improving Futures</strong> is a registered charity (no. 1141966) working with families in Bournville, Weston-super-Mare since 2011.</p>
+        <p><strong>Address:</strong> The XTND Hut, Bournville Primary School, Weston-super-Mare, North Somerset</p>
+        <p><strong>Phone:</strong> Contact us through the school office or catch us at the gate</p>
+        <div class="note"><strong>TBC:</strong> Phone number, email address, and Facebook URL needed for footer</div>
+      </div>
+    </div>
+
+    <!-- Doc footer -->
+    <div class="doc-footer">
+      <p>XTND Website Copy Document &bull; Prepared by Originate &bull; February 2026</p>
+      <p>Preview: <a href="https://aaronoriginate.github.io/xtnd-preview/" style="color: #EF2B2D;">aaronoriginate.github.io/xtnd-preview</a></p>
+    </div>
+
+  </div>
+</body>
+</html>
